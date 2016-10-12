@@ -11,7 +11,13 @@ import UIKit
 extension UIViewController: WalkthroughViewDelegate {
 
     public var rootController: UIViewController? {
-        return UIApplication.sharedApplication().delegate?.window??.rootViewController
+        let rootController = UIApplication.sharedApplication().delegate?.window??.rootViewController
+
+        if let presentedViewController = rootController?.presentedViewController {
+            return presentedViewController
+        }
+        
+        return rootController
     }
     
     public var walkthroughView: WalkthroughView? {
